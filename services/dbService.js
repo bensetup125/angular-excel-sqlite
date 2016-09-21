@@ -1,7 +1,7 @@
 "USE STRICT";
 app.factory("DB", function($http){
 	var sqlite = require('sqlite-sync');
-	var db = sqlite.connect('database.db');
+	var db = sqlite.connect(__dirname + '/database.db');
 	return db;
 });
 

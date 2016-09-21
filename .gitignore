@@ -34,3 +34,5 @@ node_modules
 
 # Dependency directory
 bower_components
+
+myApp-darwin-x64
