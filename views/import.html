@@ -18,18 +18,22 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th ng-repeat="header in headers">{{header}}</th>
-
+				<th ng-repeat="header in headers">
+					<a ng-click="chnageSortType(header)">
+            {{header}}
+          </a>
+				</th>
+				<th></th>
 			</thead>
 			<tbody>
 				<!-- Listagem -->
 				<!--<tr dir-paginate="pessoa in pessoas|filter:pesquisar|itemsPerPage:8"> -->
 				<tr ng-repeat="row in data">
 					<td ng-repeat="(key, value) in row">{{value}}</td>
-					<!-- <td>
-						<button class="btn btn-info btn-xs" ng-click="editar(pessoa)"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
-						<button class="btn btn-danger btn-xs" ng-click="excluir(pessoa)"><span class="glyphicon glyphicon-trash"></span> Excluir</button>
-					</td> -->
+					<td>
+						<!-- <button class="btn btn-info btn-xs" ng-click="editar(pessoa)"><span class="glyphicon glyphicon-pencil"></span> Editar</button> -->
+						<button class="btn btn-danger btn-xs" ng-click="deleteRow(row)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>

@@ -23,6 +23,10 @@ app.controller("importController", function($scope, $parse, $location, dbService
 		$scope.$apply();
 	}
 
+	$scope.chnageSortType = function(sortType) {
+		console.log(sortType);
+		$scope.data = _.sortBy($scope.data, sortType)
+	}
 	$scope.export = function() {
 
 	}
@@ -35,15 +39,11 @@ app.controller("importController", function($scope, $parse, $location, dbService
 		}catch(e){
 
 		}
+		console.log(result[0].id);
 		$scope.headers = _.keys(data[0]);
 		$scope.data = data;
 		$scope.filename = result[0].file_name;
-		console.log($scope.filename);
-		// $scope.headers = _.keys(result[0].data[0]);
-		// console.log($scope.headers);
 	}
-
-
 
 	$scope.toPrettyJSON = function(json, tabWidth) {
 		var objStr = JSON.stringify(json);
@@ -58,6 +58,11 @@ app.controller("importController", function($scope, $parse, $location, dbService
 		_lastGoodResult = result;
 
 		return result;
+	}
+
+	$scope.deleteRow = function(row){
+		$scope.data = _.without($scope.data, row)
+		//dbService.updateOrInsertData($scope.filename, $scope.data);
 	}
 
 	$scope.listaPessoas = function(){
@@ -90,10 +95,5 @@ app.controller("importController", function($scope, $parse, $location, dbService
 	}
 
 	//Excluindo
-	$scope.excluir = function(dados){
-		if(confirm("Deseja realmente apagar o cadastro de "+dados.nome+"?")){
-			dbService.update('pessoas', {ativo:0}, {id: dados.id});
-			$scope.listaPessoas();
-		}
-	}
+
 });
