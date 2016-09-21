@@ -1,0 +1,75 @@
+<div class="row">
+	<div class="col-md-8">
+		<ng-csv-import content="csv.content"
+		    header="csv.header"
+		    separator="csv.separator"
+		    result="csv.result"
+		    accept="csv.accept"
+				callback="csvCallback"
+				encoding="csv.encoding"></ng-csv-import>
+	</div>
+	<button class="btn btn-primary" ng-csv="data" csv_header="headers" filename="{{filename}}">Export</button>
+</div>
+<hr>
+<!-- <div class="row">
+	<div class="content"><pre>{{csv.result}}</pre></div>
+</div> -->
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<th ng-repeat="header in headers">{{header}}</th>
+
+			</thead>
+			<tbody>
+				<!-- Listagem -->
+				<!--<tr dir-paginate="pessoa in pessoas|filter:pesquisar|itemsPerPage:8"> -->
+				<tr ng-repeat="row in data">
+					<td ng-repeat="(key, value) in row">{{value}}</td>
+					<!-- <td>
+						<button class="btn btn-info btn-xs" ng-click="editar(pessoa)"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+						<button class="btn btn-danger btn-xs" ng-click="excluir(pessoa)"><span class="glyphicon glyphicon-trash"></span> Excluir</button>
+					</td> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- Modal Cadastro e Edição -->
+<div class="modal fade" id="modalPessoa" tabindex="-1" role="dialog" >
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Pessoa</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-6">
+						<label>Nome</label>
+						<input class="form-control" type="text" ng-model="pessoa.nome">
+					</div>
+					<div class="col-md-6">
+						<label>E-mail</label>
+						<input class="form-control" type="text" ng-model="pessoa.email">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Data de Nascimento</label>
+						<input class="form-control" type="text" ng-model="pessoa.nascimento">
+					</div>
+					<div class="col-md-6">
+						<label>Endereço</label>
+						<input class="form-control" type="text" ng-model="pessoa.endereco">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" ng-click="pessoa = {}" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" ng-click="salvar()">Salvar</button>
+			</div>
+		</div>
+	</div>
+</div>
